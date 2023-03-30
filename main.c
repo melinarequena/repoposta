@@ -1,22 +1,27 @@
-// /*Ingresar un texto y contar cuántas vocales y consonantes hay. Considerar las mayúsculas
-//y las minúsculas iguales*/
+//mas dificil: ingresar un texto y ver cuantas palabras son capicuas
 #include<stdio.h>
+#include<string.h>
 int main()
 {
-    char texto[100];
-    int contv=0, contc=0, i;
-    printf("Ingrese un texto");
+    char texto[500], *palabra;
+    int cont=0, i, longitud, cont2=0;
+    printf("Ingrese un texto:\n");
     fflush(stdin);
     gets(texto);
-    for(i=0; texto[i]!='\0'; i++)
+    palabra=strtok(texto, " ,.;:!?");
+    while(palabra!=NULL)
     {
-        if(texto[i]=='a'|| texto[i]=='e'|| texto[i]=='i'|| texto[i]=='o'|| texto[i]=='u'|| texto[i]=='A'||texto[i]=='E'||texto[i]=='I'||texto[i]=='O'||texto[i]=='U')
-        contv++;
-        else
-            contc++;
-    }
-    printf("La cantidad de vocales presentes en el texto es de %d, mientras que la cantidad de consonantes es de %d", contv, contc);
-
-    return 0;
-
+        longitud = strlen(palabra);
+        for (i = 1; palabra[i] != longitud / 2; i++)
+        {
+            if (palabra[longitud] - i == palabra[i])
+                cont++;
+        }
+        if(cont==longitud/2)
+        {
+            cont2++;
+        }
+    }palabra=strtok(NULL, "!;:,.");
+printf("La cantidad de palabras capicuas es de %d", &cont2);
+return 0;
 }
